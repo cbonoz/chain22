@@ -1,11 +1,11 @@
 import Moralis from "moralis";
-const Captchain = Moralis.Object.extend("Captchain");
+const Captcha = Moralis.Object.extend("Captcha");
 
-export const saveCaptchain = async prop => {
+export const saveCaptcha = async prop => {
   delete prop["id"];
   const keys = Object.keys(prop);
 
-  const obj = new Captchain();
+  const obj = new Captcha();
   keys.forEach(k => {
     obj.save(k, prop[k]);
   });
@@ -14,22 +14,22 @@ export const saveCaptchain = async prop => {
 };
 
 // https://docs.moralis.io/moralis-server/database/queries
-export const getCaptchain = async cid => {
-  const query = new Moralis.Query(Captchain);
+export const getCaptcha = async cid => {
+  const query = new Moralis.Query(Captcha);
   query.equalTo("cid", cid);
   const results = await query.find();
   return results;
 };
 
-export const getCaptchains = async (skip, limit) => {
+export const getCaptchas = async (skip, limit) => {
   limit = limit || 25;
   skip = skip || 0;
 
-  const query = new Moralis.Query(Captchain);
+  const query = new Moralis.Query(Captcha);
   query.skip(skip);
   query.withCount();
   const { results } = await query.find();
-  const Captchains = results.map(x => x.attributes);
-  console.log("Captchains", Captchains);
-  return Captchains;
+  const Captchas = results.map(x => x.attributes);
+  console.log("Captchas", Captchas);
+  return Captchas;
 };

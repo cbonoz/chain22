@@ -4,11 +4,14 @@ import { APP_NAME, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./components/About";
 import Moralis from "moralis";
-import logo from "./assets/logo.png";
 import CreateCaptcha from './components/CreateCaptcha';
+
+import logo from "./assets/logo.png";
 
 import "antd/dist/antd.min.css";
 import "./App.css";
+import Dashboard from './components/Dashboard';
+import Captcha from './components/Captcha';
 
 const { Header, Footer, Sider, Content } = Layout;
 // const MORALIS = false; // Enable for production backend storage.
@@ -57,7 +60,7 @@ function App() {
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
             <Link to="/">
               <Menu.Item key="0">
-                <img src={logo} className="header-image" />
+                {/* <img src={logo} className="header-image" /> */}
               </Menu.Item>
             </Link>
             {!address && <Link to="/">
@@ -66,13 +69,15 @@ function App() {
             {!address && <span>
               <Button type="secondary" onClick={login}>Connect wallet</Button>
             </span>}
-            {address && <Link to="/create">
+            {address && <>
+              <Link to="/create">
                 <Menu.Item key="2">Create Captchain</Menu.Item>
-              </Link>}
-              {address && <Link to="/discover">
-                <Menu.Item key="3">Access Captchain</Menu.Item>
-              </Link>}
-              {address && <span>Active: {address.substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>}
+              </Link>
+              <Link to="/dashboard">
+                <Menu.Item key="3">Dashboard</Menu.Item>
+              </Link>
+              <span>Active: {address.substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>
+            </>}
           </Menu>
         </Header>
         <Content>
@@ -80,7 +85,8 @@ function App() {
             <Routes>
               <Route exact path="/" element={<About address={address} login={login}/>}/>
               <Route exact path="/create" element={<CreateCaptcha address={address} />}/>
-              {/* <Route exact path="/c/:captchainId" element={<CaptchainInfo address={address} />}/> */}
+              <Route exact path="/dashboard" element={<Dashboard address={address} />}/>
+              <Route exact path="/c/:captchaId" element={<Captcha address={address} />}/>
               <Route exact path="/about" element={<About/>}/>
             </Routes>
           </div>

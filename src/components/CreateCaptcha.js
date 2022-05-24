@@ -3,7 +3,7 @@ import { Button, Input, Row, Col, Radio, Steps, Result, Checkbox } from "antd";
 import { getExplorerUrl, captchaUrl } from "../util";
 import { EXAMPLE_FORM } from "../util/constants";
 import { deployContract } from "../contract/deploy";
-import { saveCaptchain } from "../util/moral";
+import { saveCaptcha } from "../util/moral";
 
 const { Step } = Steps;
 
@@ -17,13 +17,6 @@ function CreateCaptcha({address}) {
     console.log('update', data)
     setData({ ...data, [key]: value });
   };
-
-  const onChange = e => {
-    console.log('checked = ', e.target.checked);
-    updateData('worldId', e.target.checked);
-  };
-
-  const actionId = `${data.domain}-${data.title}`
 
   const isValid = (data) => {
     return (
@@ -74,12 +67,12 @@ function CreateCaptcha({address}) {
 
       // Save result to moralis record set.
       try {
-        await saveCaptchain(res)
+        await saveCaptcha(res)
       } catch (e) {
-        console.error("error saving captchain", e);
+        console.error("error saving captcha", e);
       }
     } catch (e) {
-      console.error("error creating captchain", e);
+      console.error("error creating captcha", e);
     } finally {
       setLoading(false);
     }
@@ -99,7 +92,7 @@ function CreateCaptcha({address}) {
       <Row>
         <Col span={16}>
           <div className="create-form white boxed">
-            <h1>Create new captchain</h1>
+            <h1>Create new Captcha</h1>
 
             <h3 className="vertical-margin">General information</h3>
             <Input
@@ -110,9 +103,9 @@ function CreateCaptcha({address}) {
               onChange={(e) => updateData("title", e.target.value)}
             />
             <Input
-              aria-label="Access Code"
-              onChange={(e) => updateData("code", e.target.value)}
-              placeholder="Enter access code for the Captcha"
+              aria-label="Callback url"
+              onChange={(e) => updateData("callbackUrl", e.target.value)}
+              placeholder="Enter callback url for the Captcha"
               prefix="Access code:"
               className="standard-input"
               value={data.code}
@@ -121,7 +114,6 @@ function CreateCaptcha({address}) {
             <Input
             className="standard-input"
               aria-label="Your address:"
-              placeholder="Enter access code for the Captcha"
               disabled={true}
               prefix="Your address"
               value={address}
@@ -150,12 +142,9 @@ function CreateCaptcha({address}) {
               <div>
                 <Result
                   status="success"
-                  title="Successfully created captchain!"
-                  subTitle="View created contract and shareable url below"
+                  title="Successfully created Captcha!"
+                  subTitle="View created contract and embeddable captcha below"
                 />
-                {/* <a href={ipfsUrl(result.hash)} target="_blank">
-                  View metadata
-                </a> */}
                 <br />
                 <a href={result.contractUrl} target="_blank">
                   View created contract
@@ -166,7 +155,7 @@ function CreateCaptcha({address}) {
                   Share this url with your friends/colleagues.
                   <br />
                   <a href={result.captchaUrl} target="_blank">
-                    Open captchain url
+                    Open Captcha url
                   </a>
                 </p>
 
@@ -186,12 +175,12 @@ function CreateCaptcha({address}) {
             >
               <Step title="Fill in fields" description="Enter required data." />
               <Step
-                title="Create captchain"
-                description="Create the initial contract and shareable url for peers to join"
+                title="Create Captcha"
+                description="Create the initial contract and get an embeddable Captcha url"
               />
               <Step
-                title="Invite others to join"
-                description="Your captchain will be live for you and others to view and invest together."
+                title="Embed the Captcha on your website"
+                description="Your Captcha will be live to embed wherever you want"
               />
             </Steps>
           </div>

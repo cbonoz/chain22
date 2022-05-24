@@ -25,10 +25,6 @@ export const ipfsUrl = (cid, fileName) => {
   export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
-  export const interestAtTime = (principal, rate, n, periods) => {
-    return principal*Math.pow(1 + rate/n, n*periods)
-  }
   
   export const getExplorerUrl = (hash, useTx) =>
     `${ACTIVE_CHAIN_ID.url}${useTx ? "tx/" : "address/"}${hash}`;
