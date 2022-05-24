@@ -33,7 +33,7 @@ contract Captchain is Ownable {
         }
         // Successful scenario (no exception).
         emit CaptchaAttempt(msg.sender, address(this), customId, true);
-        return callbackUrl;
+        return callbackUrl; // TODO: add verification/code to ensure the url isn't being forged (or accessible directly without a successful attempt).
     }
 
 }

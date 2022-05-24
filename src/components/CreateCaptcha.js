@@ -20,9 +20,8 @@ function CreateCaptcha({address}) {
 
   const isValid = (data) => {
     return (
-      data.title &&
-      data.code &&
-      data.domain
+      data.name &&
+      data.callbackUrl
     );
   };
   const isValidData = isValid(data);
@@ -32,24 +31,27 @@ function CreateCaptcha({address}) {
 
     if (!isValidData) {
       setError(
-        "Please provide a title, description, valid address, and at least one file."
+        "Please provide a name, description, valid address, and at least one file."
       );
       return;
     }
 
     setLoading(true);
-    const body = { ...data };
     let res = { ...data };
+
+    if (!res.customId) {
+      res.customId = res.name;
+    }
 
     try {
       // 1) deploy base contract with metadata,
-      const contract = await deployContract(data.domain, data.title, data.code);
+      const contract = await deployContract(res);
       res["contract"] = contract;
 
       // 2) Upload files to moralis/ipfs,
       // const metadata = await uploadFiles(
       //   files,
-      //   data.title,
+      //   data.name,
       //   data.description,
       //   data.signerAddress,
       //   contract.address
@@ -66,13 +68,11 @@ function CreateCaptcha({address}) {
       setResult(res);
 
       // Save result to moralis record set.
-      try {
-        await saveCaptcha(res)
-      } catch (e) {
-        console.error("error saving captcha", e);
-      }
-    } catch (e) {
-      console.error("error creating captcha", e);
+      await saveCaptcha(res)
+    } catch (e)  {
+      const msg = `Error saving captcha: ${e.toString()}`;
+      console.error(msg);
+      setError(msg)
     } finally {
       setLoading(false);
     }
@@ -96,20 +96,33 @@ function CreateCaptcha({address}) {
 
             <h3 className="vertical-margin">General information</h3>
             <Input
-              placeholder="Title of the captchain"
-              value={data.title}
-              prefix="Title:"
+              placeholder="name of the Captcha"
+              value={data.name}
+              prefix="Name:"
               className="standard-input"
-              onChange={(e) => updateData("title", e.target.value)}
+              onChange={(e) => updateData("name", e.target.value)}
             />
+           
             <Input
               aria-label="Callback url"
               onChange={(e) => updateData("callbackUrl", e.target.value)}
               placeholder="Enter callback url for the Captcha"
-              prefix="Access code:"
+              prefix="Callback url:"
               className="standard-input"
-              value={data.code}
+              value={data.callbackUrl}
             />
+            <br/>
+            <p>The user will be sent to this url if the authentication request is successful.</p>
+<Input
+              placeholder="Custom ID of the Captcha (optional)"
+              value={data.customId}
+              prefix="Custom ID:"
+              className="standard-input"
+              onChange={(e) => updateData("customId", e.target.value)}
+            />
+
+            <br/>
+            <hr/>
 
             <Input
             className="standard-input"
@@ -127,7 +140,7 @@ function CreateCaptcha({address}) {
               type="primary"
               className="standard-button"
               onClick={create}
-              disabled={loading} // || !isValidData}
+              disabled={loading || !isValidData}
               loading={loading}
             >
               Create!
@@ -142,8 +155,8 @@ function CreateCaptcha({address}) {
               <div>
                 <Result
                   status="success"
-                  title="Successfully created Captcha!"
-                  subTitle="View created contract and embeddable captcha below"
+                  name="Successfully created Captcha!"
+                  subname="View created contract and embeddable captcha below"
                 />
                 <br />
                 <a href={result.contractUrl} target="_blank">
@@ -173,13 +186,13 @@ function CreateCaptcha({address}) {
               size="small"
               current={activeStep}
             >
-              <Step title="Fill in fields" description="Enter required data." />
+              <Step name="Fill in fields" description="Enter required data." />
               <Step
-                title="Create Captcha"
+                name="Create Captcha"
                 description="Create the initial contract and get an embeddable Captcha url"
               />
               <Step
-                title="Embed the Captcha on your website"
+                name="Embed the Captcha on your website"
                 description="Your Captcha will be live to embed wherever you want"
               />
             </Steps>

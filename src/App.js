@@ -60,7 +60,7 @@ function App() {
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
             <Link to="/">
               <Menu.Item key="0">
-                {/* <img src={logo} className="header-image" /> */}
+                <img src={logo} className="header-image" />
               </Menu.Item>
             </Link>
             {!address && <Link to="/">
@@ -71,7 +71,7 @@ function App() {
             </span>}
             {address && <>
               <Link to="/create">
-                <Menu.Item key="2">Create Captchain</Menu.Item>
+                <Menu.Item key="2">Create Captcha</Menu.Item>
               </Link>
               <Link to="/dashboard">
                 <Menu.Item key="3">Dashboard</Menu.Item>

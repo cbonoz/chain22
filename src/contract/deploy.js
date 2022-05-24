@@ -1,4 +1,5 @@
 import Moralis from "moralis";
+import Web3 from 'web3';
 import * as ethers from "ethers";
 import { CONTRACT } from "./metadata";
 
@@ -13,18 +14,19 @@ export const validAddress = (addr) => {
 
 
 export const getProvider = async () => {
-  return Moralis.provider
+  await Moralis.enableWeb3()
+  const provider = new ethers.providers.Web3Provider(Moralis.web3);
+  return provider;
 }
 
 export const getSigner = async () => {
-  const provider = await getProvider()
-  const signer = provider.getSigner();
-  return signer;
+  const p = await getProvider()
+  return p.getSigner()
 };
 
 
 // https://dapp-world.com/smartbook/how-to-use-ethers-with-polygon-k5Hn
-export async function deployContract(company, name, code) {
+export async function deployContract({name, customId, callbackUrl}) {
   const signer = await getSigner();
 
   //   https://dev.to/yosi/deploy-a-smart-contract-with-ethersjs-28no
@@ -39,8 +41,8 @@ export async function deployContract(company, name, code) {
   // const validatedAddress = ethers.utils.getAddress(signerAddress);
 
   // Start deployment, returning a promise that resolves to a contract object
-  console.log('deploy', company, name, code)
-  const contract = await factory.deploy(company, name, code);
+  console.log('deploy', name, customId, callbackUrl);
+  const contract = await factory.deploy(name, customId, callbackUrl, "");
   await contract.deployed();
   console.log("Contract deployed to address:", contract.address);
   return contract;
