@@ -1,0 +1,255 @@
+.App {
+  /* text-align: center; */
+}
+
+.dropzone {
+  border: 2px dotted black;
+  padding: 20px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.ant-layout-header {
+  background-color: white;
+  background: white;
+}
+
+.left {
+  text-align: left;
+}
+
+.code-block {
+  background: #eee;
+  padding: 20px;
+}
+
+.standard-input {
+  max-width: 500px;
+  clear: both;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.mint-image {
+  width: 150px;
+  margin: 20px;
+}
+
+.display-hidden {
+  display: none;
+}
+
+.company-image {
+  margin-top: 20px;
+  width:64px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px;
+  min-height: 87vh;
+  background: white;
+}
+
+.about-container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-image {
+  width: 400px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.header-image {
+  height: 50px;
+}
+
+.sell-area {
+  margin-top: 25px;;
+  min-height: 40vh;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.sell-heading {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.result-box {
+  padding: 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.success {
+  color: green;
+}
+
+.result-box:hover {
+  background: lightgray;
+}
+
+.img-invoice {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.payment-form input {
+  margin: 5px;
+}
+
+.boxed {
+  border: 1px solid lightgray;
+  padding: 10px;
+  min-height: 40vh !important;
+}
+
+.card-icon {
+  margin-top:20px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+.width-100 {
+}
+.width-150 {
+  width: 150px;
+}
+
+.error-text {
+  color: red;
+  font-style: italic;
+}
+
+.green {
+  color: green;
+}
+
+.hero-title {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.hero-section {
+  margin-top: 100px;
+}
+
+.white {
+  background: white;
+}
+.boxed {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 87vh;
+}
+
+.ant-statistic-content-value {
+  color: green;
+}
+
+.success-text {
+  color: green;
+}
+
+.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-text {
+  color: red;
+}
+
+.dropzone {
+  border: 1px dotted black;
+  padding: 25px;
+  cursor: pointer;
+}
+
+.hero-slogan-section {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-left: 25px;
+}
+
+.hero-slogan {
+  font-size: 28px;
+}
+
+.vertical-margin,
+.standard-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.ant-input,
+input,
+textarea {
+  max-width: 500px;
+  /* margin-bottom: 10px;
+  margin-top: 10px; */
+}
+
+.header-logo {
+  height: 40px;
+}
+
+.ant-layout-header {
+  background: white;
+}
+
+.reason {
+  margin-bottom: 10px;
+  font-size: 16px
+}
+.standard-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  position: relative;
+}
+
+.box-overlay {
+  z-index: 999;
+  border-radius: 5px;
+  position: absolute;
+  opacity: 0.9;
+  width: 300px;
+  height: auto;
+  padding: 20px;
+  background: white;
+  top: 20px;
+  left: 20px;
+}
