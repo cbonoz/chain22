@@ -20,12 +20,14 @@ Captchains is a platform for validating site visitors or user actions by requiri
 
 How many Captchas have you filled out that look like this?
 
+<img src='./img/captcha.png' width=600/>
+
 ### Technologies used
-* Chainlink Services
+* Chainlink Services:
 * Filecoin storage and tools.
-* Covalent API calls
+* Covalent API calls: Price fetch and human validation of the price.
 * Moralis - Captcha storage and lookup per user (based on active metamask address)
-* Trulation
+
 
 ### How it works
 1. API-call driven captchas that have character, or have dynamic questions based on the app you're visiting.
@@ -43,11 +45,8 @@ How many Captchas have you filled out that look like this?
 
 Define the following environment variables:
 <pre>
-    REACT_APP_STORAGE_KEY={YOUR WEB3 STORAGE KEY} // Used for Filecoin record saving.
-    REACT_APP_RPC_URL={YOUR RPC NODE URL} // Mumbai test net RPC url (ex: Infura, Alchemy)
     REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
     REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
-    REACT_APP_COVALENT_KEY={YOUR COVALENT API KEY} # Used for api call lookup.
 </pre>
 
 App is currently configured to run against Polygon / Mumbai. Recommend adding your own mumbai-based RPC url (ex: Alchemy/Infura) in order to serve the application.

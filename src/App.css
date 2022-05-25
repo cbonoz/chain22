@@ -9,6 +9,16 @@
   cursor: pointer;
 }
 
+/* .ant-btn-primary {
+  color: #8247E5 !important;
+}
+*/
+
+/* .ant-steps-item-icon {
+  background: #8247E5 !important;
+} */
+
+
 .ant-layout-header {
   background-color: white;
   background: white;
@@ -27,6 +37,7 @@
   max-width: 500px;
   clear: both;
   margin-top: 5px;
+  margin-bottom: 5px;
   margin-right: 5px;
 }
 

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Button, Input, Row, Col, Radio, Steps, Result, Checkbox } from "antd";
 import { getExplorerUrl, captchaUrl } from "../util";
 import { EXAMPLE_FORM } from "../util/constants";
-import { deployContract } from "../contract/deploy";
 import { saveCaptcha } from "../util/moral";
+import ImageUpload from "./ImageUpload";
 
 const { Step } = Steps;
 
@@ -21,9 +21,11 @@ function CreateCaptcha({address}) {
   const isValid = (data) => {
     return (
       data.name &&
-      data.callbackUrl
+      data.callbackUrl &&
+      data.imageUrl
     );
   };
+
   const isValidData = isValid(data);
 
   const create = async () => {
@@ -39,14 +41,16 @@ function CreateCaptcha({address}) {
     setLoading(true);
     let res = { ...data };
 
-    if (!res.customId) {
-      res.customId = res.name;
-    }
+    // if (!res.customId) {
+    //   res.customId = res.name;
+    // }
+
+    let contract = {address: '123'}
 
     try {
       // 1) deploy base contract with metadata,
-      const contract = await deployContract(res);
-      res["contract"] = contract;
+      // const contract = await deployContract(res);
+      // res["contract"] = contract;
 
       // 2) Upload files to moralis/ipfs,
       // const metadata = await uploadFiles(
@@ -59,7 +63,8 @@ function CreateCaptcha({address}) {
       const metadata = {}
 
       // 3) return shareable url.
-      res["cid"] = res.cid || contract.address
+      res["address"] = res.cid || contract.address;
+      res["owner"] = address;
       // res["hash"] = metadata.hash();
       res["contractUrl"] = getExplorerUrl(contract.address);
       res["captchaUrl"] = captchaUrl(contract.address, data.code)
@@ -96,13 +101,32 @@ function CreateCaptcha({address}) {
 
             <h3 className="vertical-margin">General information</h3>
             <Input
-              placeholder="name of the Captcha"
+              placeholder="Name of the Captcha"
               value={data.name}
               prefix="Name:"
               className="standard-input"
               onChange={(e) => updateData("name", e.target.value)}
             />
+            <br/>
+            <hr/>
+
+            <div>Upload Captcha base image:</div>
+
+            <ImageUpload onUpload={(url) => updateData("imageUrl", url)}/>
+
+            <div>Enter a single keyword (lowercase) that should be guessable by your uploaded image.</div>
+
+            <Input
+              placeholder="Target keyword"
+              value={data.keyword}
+              prefix="Keyword:"
+              className="standard-input"
+              onChange={(e) => updateData("keyword", e.target.value)}
+            />
+            <br/>
+            <br/>
            
+            <div>The user will be sent to this url if the authentication request is successful.</div>
             <Input
               aria-label="Callback url"
               onChange={(e) => updateData("callbackUrl", e.target.value)}
@@ -112,29 +136,7 @@ function CreateCaptcha({address}) {
               value={data.callbackUrl}
             />
             <br/>
-            <p>The user will be sent to this url if the authentication request is successful.</p>
-<Input
-              placeholder="Custom ID of the Captcha (optional)"
-              value={data.customId}
-              prefix="Custom ID:"
-              className="standard-input"
-              onChange={(e) => updateData("customId", e.target.value)}
-            />
 
-            <br/>
-            <hr/>
-
-            <Input
-            className="standard-input"
-              aria-label="Your address:"
-              disabled={true}
-              prefix="Your address"
-              value={address}
-            />
-            <br />
-            <br />
-
-            <br />
 
             <Button
               type="primary"

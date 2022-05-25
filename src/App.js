@@ -12,6 +12,8 @@ import "antd/dist/antd.min.css";
 import "./App.css";
 import Dashboard from './components/Dashboard';
 import Captcha from './components/Captcha';
+import CaptchaPage from './components/CaptchaPage';
+import { initMoralis } from './util/moral';
 
 const { Header, Footer, Sider, Content } = Layout;
 // const MORALIS = false; // Enable for production backend storage.
@@ -42,9 +44,7 @@ function App() {
   }
  
   useEffect(() => {
-    const body = {serverUrl: MORALIS_SERVER, appId: MORALIS_ID}
-    console.log('init moralis', body)
-    Moralis.start(body)
+    initMoralis()
     let u = Moralis.User.current() 
     if (u) {
       setAddress(u.get('ethAddress'))
@@ -53,10 +53,13 @@ function App() {
 
   console.log('addr', address)
 
+  const fullPath = window.location.href
+  const showHeader = fullPath.indexOf('/c/') === -1 // Not on capcha page
+
   return (
     <div className="App">
       <Layout>
-        <Header className="header">
+        {showHeader && <Header className="header">
           <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
             <Link to="/">
               <Menu.Item key="0">
@@ -79,14 +82,14 @@ function App() {
               <span>Active: {address.substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>
             </>}
           </Menu>
-        </Header>
+        </Header>}
         <Content>
           <div className="container">
             <Routes>
               <Route exact path="/" element={<About address={address} login={login}/>}/>
               <Route exact path="/create" element={<CreateCaptcha address={address} />}/>
               <Route exact path="/dashboard" element={<Dashboard address={address} />}/>
-              <Route exact path="/c/:captchaId" element={<Captcha address={address} />}/>
+              <Route exact path="/c/:captchaId" element={<CaptchaPage address={address} />}/>
               <Route exact path="/about" element={<About/>}/>
             </Routes>
           </div>

@@ -9,15 +9,14 @@ const requireEnv = (k) => {
     return v
 }
 
-export const NFT_STORAGE_KEY = requireEnv('REACT_APP_NFT_KEY')
-
 export const RPC_ID = process.env.REACT_APP_INFURA_ID
 export const RPC_URL = process.env.REACT_APP_RPC_URL || 'https://rpc-matic.mumbai.today'
-export const MORALIS_SERVER = process.env.REACT_APP_MORALIS_SERVER
-export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID
+
+export const MORALIS_SERVER = requireEnv('REACT_APP_MORALIS_SERVER')
+export const MORALIS_ID = requireEnv('REACT_APP_MORALIS_ID')
 
 export const EXAMPLE_FORM = {}
-export const LOGIN_MESSAGE = "WorldCaptchains would like connect to your wallet."
+export const LOGIN_MESSAGE = "Captchains would like connect to your wallet."
 
 export const CHAIN_OPTIONS = {
     80001: {
@@ -56,4 +55,4 @@ export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
   0
 );
 
-export const COVALENT_KEY = process.env.REACT_APP_COVALENT_KEY;
+export const COVALENT_KEY = requireEnv('REACT_APP_COVALENT_KEY')
