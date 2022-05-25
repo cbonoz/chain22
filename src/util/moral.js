@@ -45,3 +45,14 @@ export const getCaptchas = async (ownerAddress, skip, limit) => {
   console.log("Captchas", Captchas);
   return Captchas;
 };
+
+export const transfer = async (amountInTokenString, receiver, contractAddress) => {
+  const options = {type: "erc20", 
+                 amount: Moralis.Units.Token(amountInTokenString, "18"),  // ex: ".5", "18"
+                 receiver,
+                 contractAddress}
+  console.log('transfer request', options)
+  await Moralis.enableWeb3();
+  let result = await Moralis.transfer(options)
+  return result
+}

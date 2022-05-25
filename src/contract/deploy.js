@@ -43,7 +43,7 @@ export async function deployContract({name, callbackUrl, keyword}) {
 
   // Start deployment, returning a promise that resolves to a contract object
   console.log('deploy', name, callbackUrl, keyword);
-  const contract = await factory.deploy(name, callbackUrl, keyword)
+  const contract = await factory.deploy(name, callbackUrl, keyword)// , { gasLimit: 500000 })
   await contract.deployed();
   console.log("Contract deployed to address:", contract.address);
   return contract;

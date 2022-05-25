@@ -22,11 +22,14 @@ How many Captchas have you filled out that look like this?
 
 <img src='./img/captcha.png' width=600/>
 
-### Technologies used
-* Chainlink Services:
-* Filecoin storage and tools.
-* Covalent API calls: Price fetch and human validation of the price.
-* Moralis - Captcha storage and lookup per user (based on active metamask address)
+Captchains enables customers to provision their own captchas, with the resiliency and auditability of blockchain.
+
+Each Captcha:
+1. Requests the user to identify a keyword based on an image (not autoselect of images).
+2. Requires the user state the latest price of ethereum, but this could be in theory any API-call based question that requires research in order to answer.
+
+The captcha is also self-driving, operating based on the gas fees of the network in order to process the authentication. This makes Captchain work well with lower-cost networks such as Polygon/BSC.
+
 
 
 ### How it works
@@ -35,11 +38,12 @@ How many Captchas have you filled out that look like this?
 3. Create a platform managing captchas across many different apps, all for the cost of gas on low cost Polygon chains.
 4. Save the result of the c
 
-### Technologies used:
+### Technologies used
+* Chainlink Services:
+* Filecoin storage and tools:
+* Covalent API calls: Price fetch and human validation of the price.
+* Moralis - Captcha storage and lookup per user (based on active metamask address)
 
-* Polygon: Low cost contract deployment for each Captchain smart contract. Code is privately stored on the contract and used for work Captchain access - only the owner can fetch the active code value.
-* Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
-* Covalent: Used to pull historic data from Aave. Reference-able by users in the app to determine if it may be a good time to invest/lend based on past rates.
 
 ### How to run
 
@@ -47,9 +51,10 @@ Define the following environment variables:
 <pre>
     REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
     REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
+    REACT_APP_COVALENT_KEY={YOUR COVALENT KEY} # This is passed in as an arg to the chainlink contract. Covalent then issues an API call on each captcha to update the record (Ethereum) price which is used for authentication.
 </pre>
 
-App is currently configured to run against Polygon / Mumbai. Recommend adding your own mumbai-based RPC url (ex: Alchemy/Infura) in order to serve the application.
+App is currently configured to run against Polygon / Mumbai using Moralis as the Web3 RPC client and storage provider.
 
 `yarn; yarn start`
 
@@ -63,3 +68,8 @@ Make any changes to `Captchain.sol` in the `contracts` directory.
 * https://web3.storage/
 * https://hardhat.org/tutorial/creating-a-new-hardhat-project.html
 
+### Future work
+* Production deployment.
+* Custom branding of the Captcha widget.
+* Export of the Captcha widget to other apps as a react component as a per-usage model.
+* Ability to configure the API-call based authentication mechanism.

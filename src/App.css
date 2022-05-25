@@ -28,6 +28,22 @@
   text-align: left;
 }
 
+.captcha-header {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.captcha-preview {
+  padding: 20px;
+  border: 1px dotted gray;
+}
+
+.centered-logo {
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;;
+}
+
 .code-block {
   background: #eee;
   padding: 20px;

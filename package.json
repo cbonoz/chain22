@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "antd": "^4.20.4",
     "axios": "^0.27.2",
     "chart.js": "^3.7.1",
@@ -11,7 +12,6 @@
     "js-waku": "0.22.0",
     "mime": "^3.0.0",
     "moralis": "^1.7.0",
-    "web3.storage": "^4.2.0",
     "protobufjs": "^6.11.2",
     "react": "^18.1.0",
     "react-chartkick": "^0.5.2",
@@ -22,7 +22,8 @@
     "react-scripts": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "web-vitals": "^2.1.4",
-    "web3": "^1.7.3"
+    "web3": "^1.7.3",
+    "web3.storage": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

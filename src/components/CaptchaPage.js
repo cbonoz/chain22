@@ -9,7 +9,6 @@ export default function CaptchaPage({address}) {
 
   return (
     <div>
-      <img src={logo} width={300}/>
       <Captcha captchaId={captchaId}/>
     </div>
   )

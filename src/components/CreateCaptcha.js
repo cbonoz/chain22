@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Button, Input, Row, Col, Radio, Steps, Result, Checkbox } from "antd";
 import { getExplorerUrl, captchaUrl } from "../util";
-import { EXAMPLE_FORM } from "../util/constants";
+import { EXAMPLE_FORM, IMAGE_INFO } from "../util/constants";
 import { saveCaptcha } from "../util/moral";
 import ImageUpload from "./ImageUpload";
+import InfoTooltip from "./InfoTooltip";
+import { deployContract } from "../contract/deploy";
 
 const { Step } = Steps;
 
@@ -49,8 +51,8 @@ function CreateCaptcha({address}) {
 
     try {
       // 1) deploy base contract with metadata,
-      // const contract = await deployContract(res);
-      // res["contract"] = contract;
+      const contract = await deployContract(res);
+      res["contract"] = contract;
 
       // 2) Upload files to moralis/ipfs,
       // const metadata = await uploadFiles(
@@ -101,29 +103,31 @@ function CreateCaptcha({address}) {
 
             <h3 className="vertical-margin">General information</h3>
             <Input
-              placeholder="Name of the Captcha"
+              placeholder="Your captcha identifier (ex: app name)"
               value={data.name}
-              prefix="Name:"
+              prefix="Name*:"
               className="standard-input"
               onChange={(e) => updateData("name", e.target.value)}
             />
             <br/>
             <hr/>
 
-            <div>Upload Captcha base image:</div>
+            <div>Upload Captcha base image* <InfoTooltip text={IMAGE_INFO}/></div>
 
-            <ImageUpload onUpload={(url) => updateData("imageUrl", url)}/>
+            <ImageUpload onUpload={(url) => updateData("imageUrl", url)} completed={data.imageUrl}/>
 
             <div>Enter a single keyword (lowercase) that should be guessable by your uploaded image.</div>
+
 
             <Input
               placeholder="Target keyword"
               value={data.keyword}
-              prefix="Keyword:"
+              prefix="Keyword*:"
               className="standard-input"
               onChange={(e) => updateData("keyword", e.target.value)}
             />
             <br/>
+
             <br/>
            
             <div>The user will be sent to this url if the authentication request is successful.</div>
@@ -131,7 +135,7 @@ function CreateCaptcha({address}) {
               aria-label="Callback url"
               onChange={(e) => updateData("callbackUrl", e.target.value)}
               placeholder="Enter callback url for the Captcha"
-              prefix="Callback url:"
+              prefix="Callback url*:"
               className="standard-input"
               value={data.callbackUrl}
             />
@@ -188,7 +192,7 @@ function CreateCaptcha({address}) {
               size="small"
               current={activeStep}
             >
-              <Step name="Fill in fields" description="Enter required data." />
+              <Step name="Fill in fields" description="Enter required* data." />
               <Step
                 name="Create Captcha"
                 description="Create the initial contract and get an embeddable Captcha url"

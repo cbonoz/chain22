@@ -9,6 +9,9 @@ const requireEnv = (k) => {
     return v
 }
 
+export const IMAGE_INFO = "Users will be prompted to provide the obvious keyword based on the image as part of authentication"
+export const VALUE_INFO = ""; // Note on guessing value
+
 export const RPC_ID = process.env.REACT_APP_INFURA_ID
 export const RPC_URL = process.env.REACT_APP_RPC_URL || 'https://rpc-matic.mumbai.today'
 
@@ -23,7 +26,15 @@ export const CHAIN_OPTIONS = {
       name: "Mumbai",
       host: `https://rpc-mumbai.matic.today`,
       url: "https://mumbai.polygonscan.com/",
+      linkAddress: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
       id: 80001,
+    },
+   
+    97: {
+      name: "BSC Testnet",
+      linkAddress: "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
+      url: "https://testnet.bscscan.com/",
+      id: 97,
     },
     137: {
       name: "Matic Mainnet",

@@ -27,9 +27,8 @@ contract Captchain is Ownable, ChainlinkClient {
     constructor(string memory _name, string memory _callbackUrl, string memory _keyword) {
         name = _name;
         keyword = _keyword;
-
-        value = 0; // init value (should be loaded via chainlink call).
-
+        
+        // init value (should be loaded via chainlink call).
         callbackUrl = _callbackUrl;
 
         setPublicChainlinkToken();

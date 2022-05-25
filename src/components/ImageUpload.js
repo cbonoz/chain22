@@ -1,9 +1,10 @@
+import { CheckCircleTwoTone } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import Moralis from "moralis"
 import { useState } from "react";
 import { ipfsUrl } from "../util";
 
-function ImageUpload({onUpload}) {
+function ImageUpload({onUpload, completed}) {
   const [fileTarget, setFileTarget] = useState("");
 
 //   https://docs.moralis.io/moralis-dapp/files/ipfs#saving-files
@@ -26,6 +27,7 @@ function ImageUpload({onUpload}) {
     <div>
       <input type="file" onChange={fileInput} />
       <Button className="standard-btn" onClick={uploadFile}>Upload</Button>
+      &nbsp;{completed && <CheckCircleTwoTone style={{ marginTop: '5px', fontSize: '14px', color: '#00aa00' }}  />}
     </div>
   );
 }
