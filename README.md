@@ -79,6 +79,29 @@ If unable to estimate gas when completing a captcha, check that you're on a supp
 * Export of the Captcha widget to other apps as a react component as a per-usage model.
 * Ability to configure the API-call based authentication mechanism.
 
+### Screenshots
+
+#### Home page.
+<img src="./img/home.png" width=800/>
+
+#### Creating a new captcha (deployed on BSC or Polygon).
+<img src="./img/form.png" width=800/>
+
+#### Dashboard (pulled from Moralis).
+<img src="./img/dashboard.png" width=800/>
+
+#### Funding a Captcha contract.
+<img src="./img/fund.png" width=800/>
+
+#### Previewing a Captcha.
+<img src="./img/preview.png" width=800/>
+
+#### Updating the latest captcha value (using Covalent).
+<img src="./img/update.png" width=800/>
+
+#### Remix interaction with a deployed Captcha contract.
+<img src="./img/remix.png" width=800/>
+
 ### Useful links
 * https://web3.storage/
 * https://hardhat.org/tutorial/creating-a-new-hardhat-project.html
