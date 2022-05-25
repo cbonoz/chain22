@@ -14,6 +14,9 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { Step } = Steps;
 
 const REASONS = [
+  "Create dynamic crypto-based Captchas backed by IPFS and saved on Moralis",
+  "No more 'Select all the crosswalks appear in the grid'",
+  "Every Captcha attempt is logged and recorded as a smart contract event"
 ];
 
 function About({address, login}) {
@@ -45,10 +48,7 @@ function About({address, login}) {
 
       <Row>
         <br/>
-        <Button className="standard-btn" type="primary" size="large" onClick={address ? navigate('/create') : login}>{address ? 'Create Captchain' : 'Connect wallet'}</Button>
-        {address && <span>&nbsp;
-        <Button className="standard-btn" type="secondary" size="large" onClick={() => navigate('/discover')}>Find Captchain</Button>
-          </span>}
+        <Button className="standard-btn" type="primary" size="large" onClick={address ? navigate('/create') : login}>{address ? 'Create Captcha' : 'Connect wallet'}</Button>
       </Row>
 
       <p></p>

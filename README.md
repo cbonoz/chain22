@@ -11,12 +11,17 @@ Captchains
 
 Create Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
 
-BSC security tool.
 
 Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than an image.
 
 
-<b>Note this project is a hackathon proof of concept and would require additional work in order to be production ready</b>
+
+### Technologies used
+* Chainlink Services: Every Captcha is saved as a smart contract on the BSC. All login attempts (captcha successes and failures) are emitted from the contract as events.
+* Filecoin storage and tools: Each Captcha image is hosted on IPFS.
+* Covalent API calls: Price fetch and human validation of the price. When the captcha is loaded the user can submit a low-cost chainlink API call to update the latest value on the contract.
+* Moralis - Captcha storage and lookup per user (based on active metamask address).
+
 
 ### Problem
 
@@ -29,23 +34,14 @@ Captchains enables customers to provision their own captchas, with the resilienc
 Each Captcha:
 1. Requests the user to identify a keyword based on an image (not autoselect of images).
 2. Requires the user state the latest price of ethereum, but this could be in theory any API-call based question that requires research in order to answer.
+3. Attempts (successes and failures) are logged to the contract.
 
 The captcha is also self-driving, operating based on the gas fees of the network in order to process the authentication. This makes Captchain work well with lower-cost networks such as Polygon/BSC.
-
-
 
 ### How it works
 1. API-call driven captchas that have character, or have dynamic questions based on the app you're visiting.
 2. Have an auditable history.
-3. Create a platform managing captchas across many different apps, all for the cost of gas on low cost Polygon chains.
-4. Save the result of the c
-
-### Technologies used
-* Chainlink Services:
-* Filecoin storage and tools:
-* Covalent API calls: Price fetch and human validation of the price.
-* Moralis - Captcha storage and lookup per user (based on active metamask address)
-
+3. Create a platform managing captchas across many different apps, all for the cost of gas on low cost BSC testnet and polygon chains.
 
 ### How to run
 
@@ -74,6 +70,8 @@ Make any changes to `Captchain.sol` in the `contracts` directory.
 
 If unable to estimate gas when completing a captcha, check that you're on a supported network - BSC testnet (default) or Polygon Mumbai, followed by confirming that your contract has been successfully funded; a gas estimation fee can result from calling loadValue on the contract without any LINK balance on it.
 
+
+<b>Note this project is a hackathon proof of concept and would require additional work in order to be production ready</b>
 
 ### Future work
 * Production deployment.
