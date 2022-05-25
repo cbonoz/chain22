@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 // https://covalenthq.notion.site/Chainlink-Example-39506743f5104d0da8a89f7e331fa8c0j
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -15,7 +15,7 @@ contract Captchain is Ownable, ChainlinkClient {
     string private keyword; // Shared variable (possibly could be map)
 
     uint256 private MARGIN = 100; // Margin of error on value.
-    string private API_URL = "https://api.covalenthq.com/v1/pricing/tickers/?quote-currency=USD&format=JSON&tickers=ETH&key="
+    string private API_URL = "https://api.covalenthq.com/v1/pricing/tickers/?quote-currency=USD&format=JSON&tickers=ETH&key=";
 
     address private oracle;
     bytes32 private jobId;
@@ -40,6 +40,10 @@ contract Captchain is Ownable, ChainlinkClient {
         fee = 0.0001 * 10 ** 18; // (Varies by network and job)
     }
 
+    function concat(string memory a, string memory b) public pure returns(string memory){
+        return(string(abi.encodePacked(a,"",b)));
+    }
+
     function compareStrings(string memory a, string memory b) public pure returns (bool) {
         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
     }
@@ -61,7 +65,7 @@ contract Captchain is Ownable, ChainlinkClient {
         function loadValue(string memory _covalentKey) public returns (bytes32 requestId) 
     {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-        string memory url = string.concat(API_URL, _covalentKey);
+        string memory url = concat(API_URL, _covalentKey);
         
         // Set the URL to perform the GET request using the Covalent API
         request.add("get", url);

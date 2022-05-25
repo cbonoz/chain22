@@ -27,7 +27,7 @@ export const getSigner = async () => {
 
 
 // https://dapp-world.com/smartbook/how-to-use-ethers-with-polygon-k5Hn
-export async function deployContract({name, customId, callbackUrl}) {
+export async function deployContract({name, callbackUrl, keyword}) {
   const signer = await getSigner();
 
   //   https://dev.to/yosi/deploy-a-smart-contract-with-ethersjs-28no
@@ -42,8 +42,8 @@ export async function deployContract({name, customId, callbackUrl}) {
   // const validatedAddress = ethers.utils.getAddress(signerAddress);
 
   // Start deployment, returning a promise that resolves to a contract object
-  console.log('deploy', name, customId, callbackUrl);
-  const contract = await factory.deploy(name, customId, callbackUrl, "");
+  console.log('deploy', name, callbackUrl, keyword);
+  const contract = await factory.deploy(name, callbackUrl, keyword)
   await contract.deployed();
   console.log("Contract deployed to address:", contract.address);
   return contract;

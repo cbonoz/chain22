@@ -9,6 +9,7 @@
     "hardhat": "^2.8.3"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.4.1",
     "@openzeppelin/contracts": "^4.4.2",
     "usingtellor": "^4.0.6"
   }
