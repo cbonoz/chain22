@@ -7,6 +7,7 @@ import Input from 'antd/lib/input/Input'
 import { ACTIVE_CHAIN_ID } from '../util/constants'
 import Captcha from './Captcha'
 import logo from '../assets/logo.png'
+import { ReloadOutlined } from '@ant-design/icons'
 
 export default function Dashboard({address}) {
     const [searchValue, setSearchValue] = useState()
@@ -20,12 +21,12 @@ export default function Dashboard({address}) {
 
     const clear = () => setPreview(undefined)
 
-    useEffect(() => {
-        if (!address) {
-            navigate('/')
-        }
+    // useEffect(() => {
+    //     if (!address) {
+    //         navigate('/')
+    //     }
 
-    }, [address])
+    // }, [address])
 
     async function fetchCaptchas() {
         setLoading(true)
@@ -73,10 +74,8 @@ export default function Dashboard({address}) {
         },
         {
           title: 'Address',
-          dataIndex: 'contractUrl',
-          key: 'address',
-          render: url => <div>
-                <a href={url} target="_blank">View Contract</a>
+          render: r => <div>
+                <a href={r.contractUrl} target="_blank">{r.address}</a>
           </div>
         },
         {
@@ -122,7 +121,7 @@ export default function Dashboard({address}) {
         <br/>
         <br/>
         {emptyResults && <Empty description="No Captchas found">
-           <Button type="primary" onClick={() => navigate('/create')} >Create Captcha</Button>
+           <Button type="primary" onClick={() => navigate('/create')} >Create Captcha</Button>&nbsp;<ReloadOutlined onClick={fetchCaptchas}/>
             </Empty>}
         {!emptyResults && <div>
             <Table columns={columns} dataSource={results} />

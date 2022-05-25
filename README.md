@@ -9,7 +9,9 @@
 Captchains
 ---
 
-Create Captchas backed by chainlink API calls.
+Create Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
+
+BSC security tool.
 
 Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than an image.
 
@@ -58,18 +60,29 @@ App is currently configured to run against Polygon / Mumbai using Moralis as the
 
 `yarn; yarn start`
 
+### Changing networks (local deployment)
+1. Update job/oracle/fee in `Captchain.sol` to new node provider.
+2. Update ACTIVE_CHAIN_ID in `constants.js` to the chain id of your target network.
+3. Recompile `Captchain.sol` and add the new code to `metadata.json`.
+4. Update moralis credentials above to new target server.
+
 ### Updating the Captchain smart contract
 
 Make any changes to `Captchain.sol` in the `contracts` directory.
 
 `cd contracts; yarn; npx hardhat compile`
 
-### Useful links
-* https://web3.storage/
-* https://hardhat.org/tutorial/creating-a-new-hardhat-project.html
+If unable to estimate gas when completing a captcha, check that you're on a supported network - BSC testnet (default) or Polygon Mumbai, followed by confirming that your contract has been successfully funded; a gas estimation fee can result from calling loadValue on the contract without any LINK balance on it.
+
 
 ### Future work
 * Production deployment.
 * Custom branding of the Captcha widget.
 * Export of the Captcha widget to other apps as a react component as a per-usage model.
 * Ability to configure the API-call based authentication mechanism.
+
+### Useful links
+* https://web3.storage/
+* https://hardhat.org/tutorial/creating-a-new-hardhat-project.html
+* https://testnet.binance.org/faucet-smart
+

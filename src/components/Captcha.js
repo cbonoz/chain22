@@ -53,7 +53,7 @@ export default function Captcha({
       onSuccess()
     } catch (e) {
       onFailure(e)
-      setError(e)
+      setError(JSON.stringify(e))
     } finally {
       setLoading(false)
     }

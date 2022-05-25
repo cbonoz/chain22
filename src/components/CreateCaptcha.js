@@ -6,6 +6,7 @@ import { saveCaptcha } from "../util/moral";
 import ImageUpload from "./ImageUpload";
 import InfoTooltip from "./InfoTooltip";
 import { deployContract } from "../contract/deploy";
+import { useNavigate } from "react-router";
 
 const { Step } = Steps;
 
@@ -14,6 +15,7 @@ function CreateCaptcha({address}) {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
+  const navigate = useNavigate()
 
   const updateData = (key, value) => {
     console.log('update', data)
@@ -52,7 +54,7 @@ function CreateCaptcha({address}) {
     try {
       // 1) deploy base contract with metadata,
       const contract = await deployContract(res);
-      res["contract"] = contract;
+      // res["contract"] = contract;
 
       // 2) Upload files to moralis/ipfs,
       // const metadata = await uploadFiles(
@@ -171,12 +173,14 @@ function CreateCaptcha({address}) {
                 <br />
                 <br />
                 <p>
-                  Share this url with your friends/colleagues.
+                  Link to Captcha:
                   <br />
                   <a href={result.captchaUrl} target="_blank">
                     Open Captcha url
                   </a>
                 </p>
+
+                <Button onClick={() => navigate('/dashboard')}>View Dashboard</Button>
 
                 {/* <div>{JSON.stringify(result, null, "\t")}</div> */}
               </div>

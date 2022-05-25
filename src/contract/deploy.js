@@ -68,7 +68,8 @@ export const loadValue = async (cAddress) => {
     CONTRACT.abi,
     signer
   );
-  const result = await c.loadValue(COVALENT_KEY);
+  const key = COVALENT_KEY
+  const result = await c.loadValue(key);
   return result;
 };
 
