@@ -70,7 +70,7 @@ contract Captchain is ChainlinkClient, ConfirmedOwner {
         if (!correct) {
             // Log the failure and raise an exception.
             emit CaptchaAttempt(msg.sender, address(this), name, false);
-            require(correct, "Incorrect");
+            require(correct, "Incorrect value or keyword");
         }
         // Successful scenario (no exception).
         emit CaptchaAttempt(msg.sender, address(this), name, true);

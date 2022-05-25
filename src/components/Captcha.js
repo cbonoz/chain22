@@ -53,7 +53,7 @@ export default function Captcha({
       onSuccess()
     } catch (e) {
       onFailure(e)
-      setError(JSON.stringify(e))
+      setError(e.message)
     } finally {
       setLoading(false)
     }
@@ -63,9 +63,6 @@ export default function Captcha({
     return <Spin/>
   }
 
-  if (error) {
-    return <p>{error}</p>
-  }
 
   const isFormFilled = keyword && value
 
@@ -88,8 +85,8 @@ export default function Captcha({
 
       Enter keyword corresponding to the image <a target="_blank" href={data.imageUrl}>here</a>.
       <Input prefix='Keyword:' onChange={e => setKeyword(e.target.value)} value={keyword}/>
-
       <Button className='standard-btn' type="primary" disabled={loading || !isFormFilled} onClick={validate}>Validate</Button>
+      {error && <p className='error-text'>Error: {error.substr(0, 50)}...</p>}
 </div>
     </div>
   )
