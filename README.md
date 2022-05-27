@@ -9,7 +9,7 @@
 CaptChains
 ---
 
-Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
+Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet, Polygon, or other low fee blockchain network.
 
 Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than an image.
 
