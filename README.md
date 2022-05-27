@@ -22,8 +22,6 @@ LIVE DEMO HERE: <a href="https://captchains.surge.sh" target="_blank">captchains
 * Moralis - Captcha storage and lookup per user (based on active metamask address).
 
 
-### Problem
-
 How many Captchas have you filled out that look like this?
 
 <img src='./img/captcha.png' width=600/>
