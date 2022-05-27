@@ -9,12 +9,11 @@
 Captchains
 ---
 
-Create Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
-
+Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
 
 Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than an image.
 
-
+LIVE DEMO HERE: captchains.surge.sh (live deployment instance restriction is that you must be on BSC Testnet)
 
 ### Technologies used
 * Chainlink Services: Every Captcha is saved as a smart contract on the BSC. All login attempts (captcha successes and failures) are emitted from the contract as events.
@@ -32,8 +31,8 @@ How many Captchas have you filled out that look like this?
 Captchains enables customers to provision their own captchas, with the resiliency and auditability of blockchain.
 
 Each Captcha:
-1. Requests the user to identify a keyword based on an image (not autoselect of images).
-2. Requires the user state the latest price of ethereum, but this could be in theory any API-call based question that requires research in order to answer.
+1. Requests the user to identify a keyword based on an image you specify (not autoselect of images).
+2. Second, requires the user state the latest price of ethereum, but this could be in theory any API-call based question that requires user research in order to correctly answer.
 3. Attempts (successes and failures) are logged to the contract.
 
 The captcha is also self-driving, operating based on the gas fees of the network in order to process the authentication. This makes Captchain work well with lower-cost networks such as Polygon/BSC.
@@ -58,7 +57,7 @@ App is currently configured to run against Polygon / Mumbai using Moralis as the
 
 ### Changing networks (local deployment)
 1. Update job/oracle/fee in `Captchain.sol` to new node provider.
-2. Update ACTIVE_CHAIN_ID in `constants.js` to the chain id of your target network.
+2. Update ACTIVE_CHAIN_ID in `constants.js` to the chain id of your target network. For Polygon Mumbai, use chain id 80001. For BSC testnet use chain id 97.
 3. Recompile `Captchain.sol` and add the new code to `metadata.json`.
 4. Update moralis credentials above to new target server.
 
@@ -84,6 +83,9 @@ If unable to estimate gas when completing a captcha, check that you're on a supp
 #### Home page.
 <img src="./img/home.png" width=800/>
 
+#### Login with Moralis
+<img src="./img/login.png" width=800/>
+
 #### Creating a new captcha (deployed on BSC or Polygon).
 <img src="./img/form.png" width=800/>
 
@@ -99,8 +101,11 @@ If unable to estimate gas when completing a captcha, check that you're on a supp
 #### Updating the latest captcha value (using Covalent).
 <img src="./img/update.png" width=800/>
 
-#### Remix interaction with a deployed Captcha contract.
-<img src="./img/remix.png" width=800/>
+#### Created captchas are associated with the owner's wallet address.
+<img src="./img/moralis.png" width=800/>
+
+#### Captcha contract interactions on BSC.
+<img src="./img/bsc.png" width=800/>
 
 ### Useful links
 * https://web3.storage/

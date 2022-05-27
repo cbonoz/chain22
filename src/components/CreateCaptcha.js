@@ -163,8 +163,8 @@ function CreateCaptcha({address}) {
               <div>
                 <Result
                   status="success"
-                  name="Successfully created Captcha!"
-                  subname="View created contract and embeddable captcha below"
+                  title="Successfully created Captcha!"
+                  subTitle="View created contract and embeddable captcha below"
                 />
                 <br />
                 <a href={result.contractUrl} target="_blank">

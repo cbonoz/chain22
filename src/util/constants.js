@@ -18,7 +18,7 @@ export const RPC_URL = process.env.REACT_APP_RPC_URL || 'https://rpc-matic.mumba
 export const MORALIS_SERVER = requireEnv('REACT_APP_MORALIS_SERVER')
 export const MORALIS_ID = requireEnv('REACT_APP_MORALIS_ID')
 
-export const EXAMPLE_FORM = {imageUrl: "test"}
+export const EXAMPLE_FORM = {}
 export const LOGIN_MESSAGE = "Captchains would like connect to your wallet."
 
 export const CHAIN_OPTIONS = {

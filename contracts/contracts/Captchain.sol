@@ -77,8 +77,7 @@ contract Captchain is ChainlinkClient, ConfirmedOwner {
         return callbackUrl;
     }
 
-        function loadValue(string memory _covalentKey) public returns (bytes32 requestId) 
-    {
+    function loadValue(string memory _covalentKey) public returns (bytes32 requestId) {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
         string memory url = concat(API_URL, _covalentKey);
         
@@ -98,7 +97,7 @@ contract Captchain is ChainlinkClient, ConfirmedOwner {
     }
     
     /**
-     * Receive the response in the form of uint256
+     * Receive the captcha answer in the form of uint256.
      */ 
     function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId)
     {
