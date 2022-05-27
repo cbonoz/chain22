@@ -6,7 +6,7 @@
 </p>
 <br/>
 
-Captchains
+CaptChains
 ---
 
 Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet.
