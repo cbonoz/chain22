@@ -9,9 +9,9 @@
 CaptChains
 ---
 
-Captchas on demand backed by Chainlink API calls and smart contracts on the BSC Testnet, Polygon, or other low fee blockchain network.
+Create Captchas on-demand backed by Chainlink API calls and smart contracts on the BSC Testnet or Polygon Mumbai chains.
 
-Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than an image.
+Captchains is a platform for validating site visitors or user actions by requiring users to validate they are human by the ability to research the answer to an API-driven question - rather than images alone.
 
 LIVE DEMO HERE: <a href="https://captchains.surge.sh" target="_blank">captchains.surge.sh</a> (live deployment instance restriction is that you must be on BSC Testnet)
 
@@ -36,8 +36,8 @@ Each Captcha:
 The captcha is also self-driving, operating based on the gas fees of the network in order to process the authentication. This makes Captchain work well with lower-cost networks such as Polygon/BSC.
 
 ### How it works
-1. API-call driven captchas that have character, or have dynamic questions based on the app you're visiting.
-2. Have an auditable history.
+1. Dynamic/API-call driven captchas that have character, or have dynamic questions based on the app you're visiting.
+2. Have an auditable history of successes, fails, and interactions with every Captcha stored on the blockchain network.
 3. Create a platform managing captchas across many different apps, all for the cost of gas on low cost BSC testnet and polygon chains.
 
 ### How to run
